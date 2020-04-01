@@ -19,9 +19,6 @@ function App() {
       <Route path="/intro" render={()=><h3>소개</h3>} />
       <Route path="/contact" render={()=><h3>contact</h3>} />
       
-      <div className="App">
-        <GrandParent/>
-      </div>
     </Router> /* 앱을 감싸도록 써주면 어디서든지 라우터를 쓸수 있는것 */
   );
 }
