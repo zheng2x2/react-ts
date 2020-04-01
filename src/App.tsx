@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import GrandParent from './components/Prac'
 import './App.css';
 
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; //필수
+
+// class App extends React.Component<{}, null> { //Generics<props, state>
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/intro">소개</Link></li>
+        </ul>
+      </nav>
+
+      <Route exact={true} path="/" component={Home} />
+      <Route path="/intro" render={()=><h3>소개</h3>} />
+      <Route path="/contact" render={()=><h3>contact</h3>} />
+      
+      <div className="App">
+        <GrandParent/>
+      </div>
+    </Router> /* 앱을 감싸도록 써주면 어디서든지 라우터를 쓸수 있는것 */
+  );
+}
+
+const Home = () => {
+  return (
+    <h3>Home</h3>
   );
 }
 
