@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; //필수
 import { RouteComponentProps, Switch, Redirect, NavLink } from 'react-router-dom';
 
+import { StaticRouter } from 'react-router-dom'
+
 // class App extends React.Component<{}, null> { //Generics<props, state>
 function App() {
   return (
-    <Router>
+    <StaticRouter>
       <nav>
         <ul>
           <li><NavLink exact={true} activeStyle={{ fontSize:24, fontWeight:'bold'}} to="/">Home</NavLink></li>
@@ -24,7 +26,7 @@ function App() {
         <Route path="/admin" component={Admin} />
         <Route component={NotFound} />
       </Switch>
-    </Router> /* 앱을 감싸도록 써주면 어디서든지 라우터를 쓸수 있는것 */
+    </StaticRouter> /* 앱을 감싸도록 써주면 어디서든지 라우터를 쓸수 있는것 */
   );
 }
 
