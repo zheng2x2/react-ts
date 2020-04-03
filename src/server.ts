@@ -5,10 +5,8 @@ import http from 'http';
 
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-
-
-
-
+import App from './App';
+import {StaticRouter} from 'react-router';
 
 const app = express();
 
@@ -22,7 +20,7 @@ const staticFiles = [
 
 staticFiles.forEach(file => {
     app.get(file, (req, res) => {
-        const filePath = path.join(__dirname, '../build', req.url);
+        const filePath = path.join(__dirname, '/../build', req.url);
         console.log(filePath);
         res.sendFile(filePath);
     })
@@ -32,11 +30,22 @@ app.get('*', (req, res)=> {
     const html = path.join(__dirname, '../build/index.html');
     const htmlData = fs.readFileSync(html).toString();
 
-    res.sendFile(htmlData);
+    const context: {url?: string}  = {};
 
-    // const ReactApp = ReactDOMServer.renderToString(React.createElement);
-    // const renderedHtml =htmlData.replace(`{{ SSR }}`, ReactApp);
-    // res.status(200).send(renderedHtml);
+    const ReactApp = ReactDOMServer.renderToString(
+        React.createElement(
+            StaticRouter,
+            {location: req.url, context: context},
+            React.createElement(App)
+        )
+    );
+    //console.log(ReactApp)
+    if (context.url) {
+        res.redirect(301, '/');
+    } else {
+        const renderedHtml = htmlData.replace('{{SSR}}', ReactApp);
+        res.status(200).send(renderedHtml);
+    }
 });
 
 const server = http.createServer(app);
