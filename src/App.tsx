@@ -5,6 +5,7 @@ import About from './components/About';
 import Posts from './components/Posts';
 import Admin from './components/Admin';
 import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 import { Route, Switch, Redirect } from 'react-router-dom'; //필수
 import { Store } from 'redux';
 import { addAge } from './index';
@@ -14,7 +15,6 @@ type AppProps = {
 }
 
 class App extends React.Component<AppProps, {}> { //Generics<props, state>
-// function App() {
 
   render(){
 
@@ -40,6 +40,7 @@ class App extends React.Component<AppProps, {}> { //Generics<props, state>
           store.dispatch(addAge())
         }}>한해가지났다</button>
         </div>
+        <Footer/>
       </div>
     );
   }
