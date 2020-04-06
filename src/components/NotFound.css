@@ -4,7 +4,7 @@ html, body {
 }
   
 .error-page {
-  /* display: flex; */
+  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -15,7 +15,7 @@ html, body {
   font-size: 30vh;
   font-weight: bold;
   position: relative;
-  margin: -8vh 0 0;
+  /* margin: -8vh 0 0; */
   padding: 0;
 }
 .error-page h1:after {
@@ -54,13 +54,13 @@ html, body {
   background-clip: text;
 }
 
-/* #particles-js {
+#particles-js {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-} */
+}
   
 @keyframes animateTextBackground {
   0% {
