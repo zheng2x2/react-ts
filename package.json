@@ -11,10 +11,12 @@
     "@types/node": "^12.12.34",
     "@types/react": "^16.9.31",
     "@types/react-dom": "^16.9.6",
+    "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.1.3",
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
@@ -25,7 +27,9 @@
     "build": "react-scripts build && tsc -p tsconfig.server.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "npm run-script build && node build-server/server.js"
+    "serve": "npm run-script build && node build-server/server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,5 +45,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
+  "homepage": "http://zheng2x2.github.io/react-ts"
 }
