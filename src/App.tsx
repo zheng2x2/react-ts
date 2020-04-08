@@ -50,7 +50,7 @@ const App: React.SFC<AppProps & ReactRedux.DispatchProp<any> > = (props) => {
           <Redirect from="*" to="/" />
         </Switch>
         <div>
-          {props.age} <button onClick={()=>addAge()}>한해가지났다</button>
+          {props.age} <button onClick={()=>props.dispatch(addAge())}>한해가지났다</button>
           <button onClick={()=>getCountFromGithub()}>깃헙API 비동기 호출</button>
         </div>
         <Footer/>
