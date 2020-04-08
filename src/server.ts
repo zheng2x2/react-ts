@@ -31,7 +31,6 @@ app.get('*', (req, res)=> {
     const htmlData = fs.readFileSync(html).toString();
 
     const context: {url?: string}  = {};
-
     const ReactApp = ReactDOMServer.renderToString(
         React.createElement(
             StaticRouter,
@@ -39,11 +38,18 @@ app.get('*', (req, res)=> {
             React.createElement(App)
         )
     );
-    //console.log(ReactApp)
+    // const store = createStore(ageApp);
+    // const ReactApp =ReactDOMServer.renderToString(
+    //     <Provider store={store}>
+    //         <AppContainer/>
+    //     </Provider>
+    // )
+    // const initialState = store.getState();
+
     if (context.url) {
         res.redirect(301, '/');
     } else {
-        const renderedHtml = htmlData.replace('{{SSR}}', ReactApp);
+        const renderedHtml = htmlData.replace(`<div id="root">{{SSR}}</div>`, `<div id="root">${ReactApp}</div>`);
         res.status(200).send(renderedHtml);
     }
 });

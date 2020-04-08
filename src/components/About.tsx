@@ -1,15 +1,11 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
 
 const About = () => {
 
     return (
-        <div>
+        <div className="container">
             <h3>About</h3>
-            <p><Link to="/">Home</Link></p>
-            <p><Link to="/about">About</Link></p>
-            <p><Link to="/posts">Posts</Link></p>
-            <p><Link to="/admin">Admin</Link></p>
+            <h4>xx 는 xiuxian의 약자입니다.</h4>
         </div>
     )
 }
