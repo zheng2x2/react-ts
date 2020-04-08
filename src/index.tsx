@@ -1,31 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter} from 'react-router-dom';
 
-import {createStore, Store} from 'redux';
+import {createStore} from 'redux';
 import {Provider} from 'react-redux';
+import {ageApp} from './reducer';
+import AppContainer from './App';
 
-const ADD_AGE = 'ADD_AGE';
-
-export function addAge(){
-  return {
-    type : ADD_AGE
-  }
-}
-
-function ageApp(state:{age:number}={age:35}, action: {type: 'ADD_AGE'}): {age: number} {
-  if(action.type===ADD_AGE) {
-    return {
-      age: state.age + 1
-    }
-  }
-  return state;
-}
-const initialState = (window as any).__INITIAL_STATE__;
+// const initialState = (window as any).__INITIAL_STATE__;
 //서버에서 받은 초기값으로 스토어 만들기
-const store: Store<{age:number;}> = createStore(ageApp, initialState);
+const store = createStore(ageApp);
 
 // class Provider extends React.Component<{store: Store<{age:number}>; children: JSX.Element}> {
 //   static childContextTypes = {
@@ -39,11 +24,11 @@ const store: Store<{age:number;}> = createStore(ageApp, initialState);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+      <BrowserRouter>
+    <Provider store={store}>
+        <AppContainer />
+    </Provider>
+      </BrowserRouter>
   </React.StrictMode>
   ,document.getElementById('root')
 );
